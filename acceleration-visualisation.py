@@ -3,12 +3,16 @@ import os
 import time
 
 position = [0, 0]
-size = [[-16, 17], [-9, 10]]
+size = [[-48, 49], [-9, 10]]
 speed = [0, 0]
 acceleration = [0, 0]
 
 def clear():
-    os.system("cls")
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+    
 
 def print_info(position, speed, acceleration):
     print("position: {} speed: {} acceleration: {}\n".format(position, speed, acceleration))
@@ -21,9 +25,9 @@ def draw_board(position, size):
         for j in range(size[0][0], size[0][1]): # Print dots for every x value in size on every line
             if i == y and  j == x:
                 # Print white ASCII square when the dot that has to be drawn turns out to be exactly on the current position
-                print("\u2588  ", end="")
+                print("\u2588", end="")
             else:
-                print(".  ", end="")
+                print(".", end="")
         print("\n", end="")
 
 def update_speed(speed, position, size):
